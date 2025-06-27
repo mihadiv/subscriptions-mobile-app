@@ -2,6 +2,8 @@
 
 # dependencies
 node_modules/
+jspm_packages/
+bower_components
 
 # Expo
 .expo/
@@ -25,15 +27,67 @@ expo-env.d.ts
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+lerna-debug.log*
+.pnpm-debug.log*
 
 # macOS
 .DS_Store
 *.pem
 
 # local env files
+.env
 .env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
 # typescript
 *.tsbuildinfo
 
+# yarn
+.yarn-integrity
+
+# eslint/stylelint cache
+.eslintcache
+.stylelintcache
+
+# Microbundle
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# REPL history
+.node_repl_history
+
+# npm pack output
+*.tgz
+
+# build output
+build/Release
+.cache
+.parcel-cache
+.next
+.nuxt
+.vuepress/dist
+.temp
+.docusaurus
+.serverless
+.fusebox
+.dynamodb
+.tern-port
+
+# Test coverage
+coverage
+*.lcov
+.nyc_output
+
+# VSCode testing
+.vscode-test
+
+# Other
+lib-cov
+.lock-wscript
+.node_modules/
 app-example
