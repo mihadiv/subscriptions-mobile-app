@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
 welcomeLine1: {
   fontSize: 22,
   fontWeight: "600",
-  color: "#1e1e2f",
+  color: "#1b247a",
 },
 
 welcomeLine2: {
   fontSize: 16,
-  color: "#3a3a4f",
+  color: "#1f2c9c",
   marginTop: 4,
 },
 
