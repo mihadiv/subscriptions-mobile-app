@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "flex-start",
     backgroundColor: "#c2c7ec",
-    paddingTop: 170,
+    paddingTop: 230,
   },
 
   title: {

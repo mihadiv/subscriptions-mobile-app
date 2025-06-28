@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
   welcomeContainer: {
   alignSelf: "flex-start",
-  marginTop: 40,
+  marginTop: 80,
   marginBottom: 16,
 },
 
