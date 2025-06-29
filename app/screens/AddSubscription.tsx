@@ -13,6 +13,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from "react-native";
 
 export default function AddSubscription() {
@@ -58,7 +59,7 @@ export default function AddSubscription() {
 
   const handleSave = () => {
     if (!name || !price || !startDate || !duration) {
-      Alert.alert("Please fill in all fields.");
+      Alert.alert("Please fill in all fields");
       return;
     }
 
@@ -97,6 +98,11 @@ export default function AddSubscription() {
           >
             <Text style={styles.buttonText}> ← Back </Text>
           </Pressable>
+
+          <Image
+            source={require("../../assets/images/writing.png")}
+            style={styles.sticker}
+          />
 
           <Text style={styles.title}>Add a New Subscription</Text>
 
@@ -177,13 +183,7 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "flex-start",
     backgroundColor: "#c2c7ec",
-    paddingTop: 230,
-  },
-
-  welcomeContainer: {
-    alignSelf: "flex-start",
-    marginTop: 80,
-    marginBottom: 16,
+    paddingTop: 180,
   },
 
   title: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: "center",
     color: "#1b247a",
-    fontWeight: "600",
+    fontWeight: "bold",
   },
 
   input: {
@@ -269,5 +269,12 @@ const styles = StyleSheet.create({
     top: Platform.OS === "ios" ? 60 : 40,
     left: 24,
     zIndex: 10,
+  },
+
+  sticker: {
+    width: 70,
+    height: 70,
+    marginBottom: 30,
+    alignSelf: "center",
   },
 });
