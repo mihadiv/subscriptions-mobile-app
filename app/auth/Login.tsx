@@ -13,6 +13,7 @@ import {
   Keyboard,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
+import { router, useRouter } from "expo-router";
 
 export default function Login() {
   const { login } = useAuth();
@@ -69,6 +70,13 @@ export default function Login() {
               <Text style={styles.buttonText}>Login</Text>
             </Pressable>
           </View>
+
+          <Pressable onPress={() => router.push("/auth/Register")}>
+            <Text style={styles.link}>
+              Don’t have an account?{" "}
+              <Text style={styles.linkBold}>Register</Text>
+            </Text>
+          </Pressable>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -84,7 +92,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: "600",
     color: "#1b247a",
     marginBottom: 4,
@@ -140,5 +148,18 @@ const styles = StyleSheet.create({
     color: "#2533a8",
     fontSize: 16,
     fontWeight: "600",
+  },
+
+  link: {
+    marginTop: 27,
+    textAlign: "center",
+    color: "#1f2c9c",
+    fontWeight: "500",
+  },
+
+  linkBold: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "#1f2c9c",
   },
 });
