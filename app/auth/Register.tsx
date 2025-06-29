@@ -47,8 +47,6 @@ export default function RegisterScreen() {
     }
 
     Alert.alert("Registered successfully!");
-    // TODO: connect with AuthContext or DB
-
     register(name, email, password);
     router.push("/auth/Login");
   };
