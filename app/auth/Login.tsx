@@ -35,8 +35,9 @@ export default function Login() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>Welcome 👋</Text>
-            <Text style={styles.subtitle}>Log in to manage your subscriptions</Text>
-
+          <Text style={styles.subtitle}>
+            Log in to manage your subscriptions
+          </Text>
 
           <TextInput
             style={styles.input}
@@ -81,19 +82,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#c2c7ec",
   },
-    title: {
+
+  title: {
     fontSize: 22,
     fontWeight: "600",
     color: "#1b247a",
     marginBottom: 4,
     textAlign: "center",
   },
+
   subtitle: {
     fontSize: 16,
     color: "#1f2c9c",
     marginBottom: 24,
     textAlign: "center",
   },
+
   input: {
     backgroundColor: "#f0f4ff",
     borderColor: "#2533a8",
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
+
   button: {
     backgroundColor: "#ffffff",
     borderColor: "#2c3ab0",
@@ -126,9 +131,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     marginTop: 16,
   },
+
   buttonPressed: {
     backgroundColor: "#e4e7fc",
   },
+
   buttonText: {
     color: "#2533a8",
     fontSize: 16,

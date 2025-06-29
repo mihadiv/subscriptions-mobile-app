@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigation } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
   View,
@@ -21,6 +22,8 @@ export default function AddSubscription() {
   const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
+
+  const navigation = useNavigation();
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowDatePicker(false);
@@ -55,7 +58,7 @@ export default function AddSubscription() {
 
   const handleSave = () => {
     if (!name || !price || !startDate || !duration) {
-      Alert.alert("Please fill in all fields!");
+      Alert.alert("Please fill in all fields.");
       return;
     }
 
@@ -84,6 +87,17 @@ export default function AddSubscription() {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={styles.container}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={({ pressed }) => [
+              styles.backButton,
+              styles.backButtonAbsolute,
+              pressed && styles.buttonPressed,
+            ]}
+          >
+            <Text style={styles.buttonText}> ← Back </Text>
+          </Pressable>
+
           <Text style={styles.title}>Add a New Subscription</Text>
 
           <TextInput
@@ -166,6 +180,12 @@ const styles = StyleSheet.create({
     paddingTop: 230,
   },
 
+  welcomeContainer: {
+    alignSelf: "flex-start",
+    marginTop: 80,
+    marginBottom: 16,
+  },
+
   title: {
     fontSize: 22,
     marginBottom: 16,
@@ -231,5 +251,23 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     marginLeft: 4,
     fontWeight: "500",
+  },
+
+  backButton: {
+    backgroundColor: "#ffffff",
+    borderColor: "#2c3ab0",
+    borderWidth: 2,
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    alignSelf: "flex-start",
+    marginBottom: 16,
+  },
+
+  backButtonAbsolute: {
+    position: "absolute",
+    top: Platform.OS === "ios" ? 60 : 40,
+    left: 24,
+    zIndex: 10,
   },
 });
