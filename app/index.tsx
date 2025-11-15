@@ -1,13 +1,12 @@
-import { useAuth } from './context/AuthContext';
-import Login from './auth/Login';
-import HomeScreen from './screens/HomeScreen';
+import { Redirect } from "expo-router";
+import { useAuth } from "../src/context/AuthContext";
 
 export default function Index() {
-    const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-    if(!isAuthenticated){
-        return <Login/>;
-    }
+  if (!isAuthenticated) {
+    return <Redirect href="/auth/login" />;
+  }
 
-    return <HomeScreen />
-};
+  return <Redirect href="/home" />;
+}

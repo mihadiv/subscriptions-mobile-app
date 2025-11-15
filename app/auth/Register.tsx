@@ -1,21 +1,20 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Pressable,
   Alert,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
+  Pressable,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
 } from "react-native";
-import { useRouter } from "expo-router";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../src/context/AuthContext";
 
-export default function RegisterScreen() {
+export default function Register() {
   const { register } = useAuth();
   const router = useRouter();
 
@@ -48,7 +47,7 @@ export default function RegisterScreen() {
 
     Alert.alert("Registered successfully!");
     register(name, email, password);
-    router.push("/auth/Login");
+    router.push("/auth/login");
   };
 
   return (
@@ -106,7 +105,7 @@ export default function RegisterScreen() {
             <Text style={styles.buttonText}>Register</Text>
           </Pressable>
 
-          <Pressable onPress={() => router.push("/auth/Login")}>
+          <Pressable onPress={() => router.push("/auth/login")}>
             <Text style={styles.link}>
               Already have an account?{" "}
               <Text style={styles.linkBold}>Log in</Text>

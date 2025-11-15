@@ -1,6 +1,6 @@
 import { router } from "expo-router";
-import { useAuth } from "../context/AuthContext";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useAuth } from "../../src/context/AuthContext";
 
 export default function HomeScreen() {
   const { logout } = useAuth();
@@ -8,7 +8,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={logout} // sau router.replace("/") pentru test
+        onPress={logout}
         style={({ pressed }) => [
           styles.logoutButton,
           pressed && styles.logoutButtonPressed,
@@ -32,7 +32,7 @@ export default function HomeScreen() {
 
         <View style={styles.viewSubscriptionsButton}>
           <Pressable
-            onPress={() => router.push("/screens/Subscriptions")}
+            onPress={() => router.push("/subscriptions")}
             style={({ pressed }) => [
               styles.button,
               pressed && styles.buttonPressed,
@@ -44,7 +44,7 @@ export default function HomeScreen() {
 
         <View style={styles.addSubscriptionButton}>
           <Pressable
-            onPress={() => router.push("/screens/AddSubscription")}
+            onPress={() => router.push("/subscriptions/add")}
             style={({ pressed }) => [
               styles.button,
               pressed && styles.buttonPressed,
@@ -64,25 +64,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#c2c7ec",
   },
-
   welcomeContainer: {
     alignSelf: "flex-start",
     marginTop: 110,
     marginBottom: 16,
   },
-
   welcomeLine1: {
     fontSize: 22,
     fontWeight: "600",
     color: "#1b247a",
   },
-
   welcomeLine2: {
     fontSize: 16,
     color: "#1f2c9c",
     marginTop: 4,
   },
-
   centeredContent: {
     flex: 1,
     justifyContent: "center",
@@ -90,12 +86,10 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: -40,
   },
-
   gif: {
     width: 150,
     height: 150,
   },
-
   button: {
     backgroundColor: "#ffffff",
     borderColor: "#2c3ab0",
@@ -105,35 +99,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     alignItems: "center",
     width: "100%",
-    elevation: 2, // shadow Android
-    shadowColor: "#000", // shadow iOS
+    elevation: 2,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
-
   buttonPressed: {
     backgroundColor: "#e4e7fc",
   },
-
   buttonText: {
     color: "#2533a8",
     fontSize: 16,
     fontWeight: "600",
   },
-
   viewSubscriptionsButton: {
     marginVertical: 8,
     width: "80%",
     marginTop: 60,
   },
-
   addSubscriptionButton: {
     marginVertical: 8,
     width: "80%",
     marginTop: 10,
   },
-
   logoutButton: {
     position: "absolute",
     top: 60,
@@ -146,11 +135,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     zIndex: 10,
   },
-
   logoutButtonPressed: {
     backgroundColor: "#f8d7da",
   },
-
   logoutButtonText: {
     color: "#aa1d1d",
     fontSize: 14,

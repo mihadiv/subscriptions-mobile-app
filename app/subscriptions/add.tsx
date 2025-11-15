@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
   View,
@@ -15,6 +14,7 @@ import {
   Keyboard,
   Image,
 } from "react-native";
+import { router } from "expo-router";
 
 export default function AddSubscription() {
   const [name, setName] = useState("");
@@ -23,8 +23,6 @@ export default function AddSubscription() {
   const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
-
-  const navigation = useNavigation();
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowDatePicker(false);
@@ -89,7 +87,7 @@ export default function AddSubscription() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={styles.container}>
           <Pressable
-            onPress={() => navigation.goBack()}
+            onPress={() => router.back()}
             style={({ pressed }) => [
               styles.backButton,
               styles.backButtonAbsolute,
@@ -185,7 +183,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#c2c7ec",
     paddingTop: 180,
   },
-
   title: {
     fontSize: 22,
     marginBottom: 16,
@@ -193,7 +190,6 @@ const styles = StyleSheet.create({
     color: "#1b247a",
     fontWeight: "bold",
   },
-
   input: {
     backgroundColor: "#f0f4ff",
     borderColor: "#2533a8",
@@ -210,14 +206,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
-
   expiryText: {
     fontSize: 16,
     marginBottom: 12,
     textAlign: "center",
     color: "#2533a8",
   },
-
   button: {
     backgroundColor: "#ffffff",
     borderColor: "#2c3ab0",
@@ -234,17 +228,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     marginTop: 16,
   },
-
   buttonPressed: {
     backgroundColor: "#e4e7fc",
   },
-
   buttonText: {
     color: "#2533a8",
     fontSize: 16,
     fontWeight: "600",
   },
-
   label: {
     fontSize: 14,
     color: "#1f2c9c",
@@ -252,7 +243,6 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     fontWeight: "500",
   },
-
   backButton: {
     backgroundColor: "#ffffff",
     borderColor: "#2c3ab0",
@@ -263,14 +253,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginBottom: 16,
   },
-
   backButtonAbsolute: {
     position: "absolute",
     top: Platform.OS === "ios" ? 60 : 40,
     left: 24,
     zIndex: 10,
   },
-
   sticker: {
     width: 70,
     height: 70,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 import {
   View,
   Text,
@@ -18,8 +18,8 @@ export default function Subscriptions() {
     price: string;
     expiry: string;
   };
+
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-  const navigation = useNavigation();
 
   useEffect(() => {
     const dummyData = [
@@ -29,55 +29,12 @@ export default function Subscriptions() {
         price: "12.99",
         expiry: "29-08-2025",
       },
-
       {
         id: "2",
         name: "Spotify",
         price: "6.99",
         expiry: "15-09-2025",
-      },
-
-      {
-        id: "3",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
-
-      {
-        id: "4",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
-
-      {
-        id: "5",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
-
-      {
-        id: "6",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
-
-      {
-        id: "7",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
-
-      {
-        id: "8",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      },
+      }
     ];
     setSubscriptions(dummyData);
   }, []);
@@ -90,37 +47,37 @@ export default function Subscriptions() {
     </View>
   );
 
-return (
-  <SafeAreaView style={styles.container}>
-    <Pressable
-      onPress={() => navigation.goBack()}
-      style={({ pressed }) => [
-        styles.backButton,
-        styles.backButtonAbsolute,
-        pressed && styles.buttonPressed,
-      ]}
-    >
-      <Text style={styles.buttonText}> ← Back </Text>
-    </Pressable>
+  return (
+    <SafeAreaView style={styles.container}>
+      <Pressable
+        onPress={() => router.back()}
+        style={({ pressed }) => [
+          styles.backButton,
+          styles.backButtonAbsolute,
+          pressed && styles.buttonPressed,
+        ]}
+      >
+        <Text style={styles.buttonText}> ← Back </Text>
+      </Pressable>
 
-    <View style={styles.titleRow}>
-      <Image
-        source={require("../../assets/images/document.png")}
-        style={styles.titleIcon}
-        resizeMode="contain"
+      <View style={styles.titleRow}>
+        <Image
+          source={require("../../assets/images/document.png")}
+          style={styles.titleIcon}
+          resizeMode="contain"
+        />
+        <Text style={styles.title}>My Subscriptions</Text>
+      </View>
+
+      <FlatList
+        data={subscriptions}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 24 }}
+        showsVerticalScrollIndicator={false}
       />
-      <Text style={styles.title}>My Subscriptions</Text>
-    </View>
-
-    <FlatList
-      data={subscriptions}
-      keyExtractor={(item) => item.id}
-      renderItem={renderItem}
-      contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 24 }}
-      showsVerticalScrollIndicator={false}
-    />
-  </SafeAreaView>
-);
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -144,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginBottom: 5,
     marginTop: 24,
-    marginLeft: 25
+    marginLeft: 25,
   },
 
   titleIcon: {
@@ -167,7 +124,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     color: "#2533a8",
-    marginBottom: 10
+    marginBottom: 10,
   },
 
   details: {
