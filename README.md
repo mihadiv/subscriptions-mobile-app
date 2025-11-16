@@ -192,14 +192,39 @@ This ensures the app works across all environments without manual editing.
 
 # 📌 Testing the API
 
-Below are collapsible sections for each endpoint.
+You can test the backend API using:
+
+- **Yaak** (recommended — simple & clean)
+- Postman
+- Thunder Client (VSCode extension)
+- curl (terminal)
+
+Just make sure your backend server is running:
+
+```sh
+cd api
+node server.js
+```
+
+API base URL:
+
+```
+http://localhost:3000
+```
 
 ---
 
-<details>
-  <summary>🔐 Register — <code>POST /auth/register</code></summary>
+# 🔐 Authentication Endpoints
 
-### Request  
+<details>
+<summary><strong>📌 Register — POST /auth/register</strong></summary>
+
+### **Request**
+```
+POST http://localhost:3000/auth/register
+```
+
+### **Body**
 ```json
 {
   "name": "John Doe",
@@ -207,50 +232,142 @@ Below are collapsible sections for each endpoint.
   "password": "123456"
 }
 ```
+
+### **Success Response (201)**
+```json
+{
+  "message": "User registered successfully"
+}
+```
+
+### **Error Response (400 — email exists)**
+```json
+{
+  "message": "Email already exists"
+}
+```
+
 </details>
 
 ---
 
 <details>
-  <summary>🔑 Login — <code>POST /auth/login</code></summary>
+<summary><strong>📌 Login — POST /auth/login</strong></summary>
 
-### Request  
+### **Request**
+```
+POST http://localhost:3000/auth/login
+```
+
+### **Body**
 ```json
 {
   "email": "john@test.com",
   "password": "123456"
 }
 ```
+
+### **Success Response (200)**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR...",
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@test.com"
+  }
+}
+```
+
+### **Error Response (400)**
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
 </details>
 
 ---
 
-<details>
-  <summary>➕ Add Subscription — <code>POST /subscriptions/add</code></summary>
+# 📦 Subscription Endpoints
 
-### Request  
+<details>
+<summary><strong>➕ Add Subscription — POST /subscriptions/add</strong></summary>
+
+### **Request**
+```
+POST http://localhost:3000/subscriptions/add
+```
+
+### **Body**
 ```json
 {
   "user_id": 1,
-  "name": "HBO",
-  "price": 10.50,
-  "start_date": "2025-01-15",
-  "duration_months": 12,
-  "expiry_date": "2026-01-15"
+  "name": "Netflix",
+  "price": 12.99,
+  "start_date": "2025-01-10",
+  "duration_months": 1,
+  "expiry_date": "2025-02-10"
 }
 ```
+
+### **Success Response**
+```json
+{
+  "message": "Subscription added successfully!"
+}
+```
+
+### **Error Response**
+```json
+{
+  "message": "Error adding subscription"
+}
+```
+
 </details>
 
 ---
 
 <details>
-  <summary>📄 List Subscriptions — <code>GET /subscriptions/list/:user_id</code></summary>
+<summary><strong>📄 List Subscriptions — GET /subscriptions/list/:user_id</strong></summary>
 
-### Example  
+### **Request**
 ```
 GET http://localhost:3000/subscriptions/list/1
 ```
+
+### **Success Response**
+```json
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "name": "Netflix",
+    "price": "12.99",
+    "start_date": "2025-01-10T00:00:00.000Z",
+    "duration_months": 1,
+    "expiry_date": "2025-02-10T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "user_id": 1,
+    "name": "Spotify",
+    "price": "6.99",
+    "start_date": "2025-01-15T00:00:00.000Z",
+    "duration_months": 1,
+    "expiry_date": "2025-02-15T00:00:00.000Z"
+  }
+]
+```
+
+### **Empty Response**
+```json
+[]
+```
+
+
 </details>
 
 ---
-
