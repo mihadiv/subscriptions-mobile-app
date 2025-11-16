@@ -214,7 +214,7 @@ http://localhost:3000
 
 ---
 
-# 🔐 Authentication Endpoints
+## 🔐 Authentication Endpoints
 
 <details>
 <summary><strong>📌 Register — POST /auth/register</strong></summary>
@@ -290,7 +290,7 @@ POST http://localhost:3000/auth/login
 
 ---
 
-# 📦 Subscription Endpoints
+## 📦 Subscription Endpoints
 
 <details>
 <summary><strong>➕ Add Subscription — POST /subscriptions/add</strong></summary>
