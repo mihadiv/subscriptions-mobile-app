@@ -247,9 +247,9 @@ POST http://localhost:3000/auth/register
 }
 ```
 
-</details>
-
 ---
+
+</details>
 
 <details>
 <summary><strong>📌 Login — POST /auth/login</strong></summary>
@@ -326,9 +326,9 @@ POST http://localhost:3000/subscriptions/add
 }
 ```
 
-</details>
-
 ---
+
+</details>
 
 <details>
 <summary><strong>📄 List Subscriptions — GET /subscriptions/list/:user_id</strong></summary>
