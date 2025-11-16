@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { router } from "expo-router";
+import React, { useState, useEffect, useCallback } from "react";
+import { router, useFocusEffect } from "expo-router";
 import {
   View,
   Text,
@@ -10,40 +10,48 @@ import {
   Platform,
   Image,
 } from "react-native";
+import API_URL from "../../src/config/api";
+import axios from "axios";
+import { useAuth } from "../../src/context/AuthContext";
+
+type Subscription = {
+  id: number;
+  name: string;
+  price: string;
+  expiry_date: string;
+};
 
 export default function Subscriptions() {
-  type Subscription = {
-    id: string;
-    name: string;
-    price: string;
-    expiry: string;
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
+  const { user } = useAuth();
+
+  const fetchSubscriptions = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/subscriptions/list/${user.id}`);
+      setSubscriptions(res.data);
+    } catch (error) {
+      console.log("ERR fetching subscriptions:", error);
+    }
   };
 
-  const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-
-  useEffect(() => {
-    const dummyData = [
-      {
-        id: "1",
-        name: "Netflix",
-        price: "12.99",
-        expiry: "29-08-2025",
-      },
-      {
-        id: "2",
-        name: "Spotify",
-        price: "6.99",
-        expiry: "15-09-2025",
-      }
-    ];
-    setSubscriptions(dummyData);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchSubscriptions();
+    }, [])
+  );
 
   const renderItem = ({ item }: { item: Subscription }) => (
     <View style={styles.subscriptionItem}>
       <Text style={styles.name}>- {item.name} -</Text>
       <Text style={styles.details}>Price: ${item.price}</Text>
-      <Text style={styles.details}>Expires: {item.expiry}</Text>
+      <Text style={styles.details}>
+        Expires:{" "}
+        {new Date(item.expiry_date).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })}
+      </Text>
     </View>
   );
 
@@ -71,7 +79,7 @@ export default function Subscriptions() {
 
       <FlatList
         data={subscriptions}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 24 }}
         showsVerticalScrollIndicator={false}

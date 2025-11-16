@@ -5,7 +5,7 @@ import { db } from "../db.js";
 
 const router = express.Router();
 
-//register
+// REGISTER
 router.post("/register", async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
     res.json({message: "User registered successfully"});
 });
 
-//login
+// LOGIN
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

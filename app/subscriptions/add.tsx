@@ -15,6 +15,9 @@ import {
   Image,
 } from "react-native";
 import { router } from "expo-router";
+import API_URL from "@/src/config/api";
+import axios from "axios";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function AddSubscription() {
   const [name, setName] = useState("");
@@ -23,6 +26,7 @@ export default function AddSubscription() {
   const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
+  const { user } = useAuth();
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowDatePicker(false);
@@ -55,28 +59,32 @@ export default function AddSubscription() {
     }
   }, [startDate, duration]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!name || !price || !startDate || !duration) {
       Alert.alert("Please fill in all fields");
       return;
     }
 
-    Alert.alert(
-      "Subscription added!",
-      `Name: ${name}
-        Price: ${price}
-        Starts: ${String(startDate.getDate()).padStart(2, "0")}-${String(
-        startDate.getMonth() + 1
-      ).padStart(2, "0")}-${startDate.getFullYear()}
-        Duration: ${duration} month(s)
-        Expires: ${expiryDate}`
-    );
+    try {
+      const start_date_sql = startDate.toISOString().split("T")[0];
+      const [day, month, year]=expiryDate.split("-");
+      const expiry_date_sql = `${year}-${month}-${day}`;
 
-    setName("");
-    setPrice("");
-    setStartDate(new Date());
-    setDuration("");
-    setExpiryDate("");
+      await axios.post(`${API_URL}/subscriptions/add`, {
+        user_id: user.id,
+        name,
+        price,
+        start_date: start_date_sql,
+        duration_months: parseInt(duration),
+        expiry_date: expiry_date_sql,
+      });
+
+      Alert.alert("Subscription added!");
+      router.back();
+    }
+    catch(error: any){
+      Alert.alert(error.response?.data?.message || "Error saving subscription");
+    }
   };
 
   return (
