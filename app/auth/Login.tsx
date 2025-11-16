@@ -26,6 +26,7 @@ export default function Login() {
       return;
     }
     await login(email, password);
+    router.replace("/home");
   };
 
   return (
