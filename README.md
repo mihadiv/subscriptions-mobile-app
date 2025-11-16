@@ -51,12 +51,50 @@ Includes **authentication**, **local or remote backend API**, and **MySQL databa
 │
 └── api/                     # Backend API
     ├── routes/auth.js
+    ├── database.sql
     ├── db.js
     ├── server.js
     ├── package.json
     ├── .env                 # Backend env (ignored)
     └── .env.example         # Template
 ```
+
+---
+
+# 🗄️ Setting Up the Database (MySQL)
+
+Before running the backend API, you must set up the MySQL database.
+
+---
+
+## Import the Database Schema
+
+The project includes a SQL file containing the full database structure:
+
+**Location:**  
+```
+api/database.sql
+```
+
+Open your preferred SQL client:
+
+- DBeaver  
+- DataGrip  
+- MySQL Workbench  
+- or terminal (`mysql -u root -p`)
+
+Then execute the script:
+
+```sql
+source database.sql;
+```
+
+Or manually copy/paste its content.  
+This script will:
+
+✔ Create the `subscriptions_app` database  
+✔ Create the `users` table  
+✔ Create the `subscriptions` table  
 
 ---
 
@@ -85,10 +123,10 @@ So `.env` is only required for **real phones**.
 ```
 DB_HOST=localhost
 DB_USER=root
-DB_PASS=your_password
+DB_PASS=your_mysql_password
 DB_NAME=subscriptions_app
 
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=replace_with_a_secure_random_string
 ```
 
 See `api/.env.example` for a clean reference.
