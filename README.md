@@ -61,7 +61,7 @@ Includes **authentication**, **local or remote backend API**, and **MySQL databa
 
 ---
 
-# 🗄️ Setting Up the Database (MySQL)
+# 🗄️ Setting Up the Database 
 
 Before running the backend API, you must set up the MySQL database.
 
@@ -133,7 +133,7 @@ See `api/.env.example` for a clean reference.
 
 ---
 
-# ▶️ Running the Backend (Terminal 1)
+# ▶️ Running the Backend 
 
 The backend API must run in its own dedicated terminal:
 
@@ -151,7 +151,7 @@ http://localhost:3000
 
 ---
 
-# 📱 Running the Mobile App (Terminal 2)
+# 📱 Running the Mobile App 
 
 Open a second terminal window and start the Expo app:
 
@@ -190,12 +190,16 @@ This ensures the app works across all environments without manual editing.
 
 ---
 
-# 🧪 Testing Authentication
+# 📌 Testing the API
 
-### ✔ Register  
-POST `http://localhost:3000/auth/register`
+Below are collapsible sections for each endpoint.
 
-Body:
+---
+
+<details>
+  <summary>🔐 Register — <code>POST /auth/register</code></summary>
+
+### Request  
 ```json
 {
   "name": "John Doe",
@@ -203,8 +207,50 @@ Body:
   "password": "123456"
 }
 ```
+</details>
 
-### ✔ Login  
-POST `http://localhost:3000/auth/login`
+---
 
+<details>
+  <summary>🔑 Login — <code>POST /auth/login</code></summary>
+
+### Request  
+```json
+{
+  "email": "john@test.com",
+  "password": "123456"
+}
+```
+</details>
+
+---
+
+<details>
+  <summary>➕ Add Subscription — <code>POST /subscriptions/add</code></summary>
+
+### Request  
+```json
+{
+  "user_id": 1,
+  "name": "HBO",
+  "price": 10.50,
+  "start_date": "2025-01-15",
+  "duration_months": 12,
+  "expiry_date": "2026-01-15"
+}
+```
+</details>
+
+---
+
+<details>
+  <summary>📄 List Subscriptions — <code>GET /subscriptions/list/:user_id</code></summary>
+
+### Example  
+```
+GET http://localhost:3000/subscriptions/list/1
+```
+</details>
+
+---
 
