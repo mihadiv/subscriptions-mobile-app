@@ -95,7 +95,9 @@ See `api/.env.example` for a clean reference.
 
 ---
 
-# ▶️ Running the Backend
+# ▶️ Running the Backend (Terminal 1)
+
+The backend API must run in its own dedicated terminal:
 
 ```sh
 cd api
@@ -103,7 +105,7 @@ npm install
 node server.js
 ```
 
-Server will run at:
+The server will be available at:
 
 ```
 http://localhost:3000
@@ -111,7 +113,9 @@ http://localhost:3000
 
 ---
 
-# 📱 Running the Mobile App
+# 📱 Running the Mobile App (Terminal 2)
+
+Open a second terminal window and start the Expo app:
 
 ```sh
 cd subscriptions-mobile-app
@@ -119,10 +123,10 @@ npm install
 npx expo start
 ```
 
-Run on:
+Choose where to run the app:
 - **iOS Simulator** → press `i`
 - **Android Emulator** → press `a`
-- **Real Phone** → scan QR code using Expo Go
+- **Physical device** → scan QR code using Expo Go
 
 ---
 
@@ -165,11 +169,4 @@ Body:
 ### ✔ Login  
 POST `http://localhost:3000/auth/login`
 
----
-
-# 📝 Deployment Ready
-
-- `.env` files are ignored for safety.
-- `.env.example` guides developers on required variables.
-- Works out-of-the-box on any emulator or phone.
 
