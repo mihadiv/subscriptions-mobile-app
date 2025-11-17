@@ -9,6 +9,7 @@ import {
   Pressable,
   Platform,
   Image,
+  Alert,
 } from "react-native";
 import API_URL from "../../src/config/api";
 import axios from "axios";
@@ -40,6 +41,31 @@ export default function Subscriptions() {
     }, [])
   );
 
+const handleDelete = (id: number) => {
+  Alert.alert(
+    "Confirm Delete",
+    "Are you sure you want to delete this subscription?",
+    [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await axios.delete(`${API_URL}/subscriptions/delete/${id}`);
+            fetchSubscriptions(); 
+          } catch (error) {
+            console.log(error);
+          }
+        },
+      },
+    ]
+  );
+};
+
   const renderItem = ({ item }: { item: Subscription }) => (
     <View style={styles.subscriptionItem}>
       <Text style={styles.name}>- {item.name} -</Text>
@@ -52,6 +78,11 @@ export default function Subscriptions() {
           year: "numeric",
         })}
       </Text>
+      <Pressable
+      onPress={()=> handleDelete(item.id)}
+      style={styles.deleteButton}>
+        <Text style={styles.deleteButtonText}>Delete</Text>
+      </Pressable>
     </View>
   );
 
@@ -167,4 +198,22 @@ const styles = StyleSheet.create({
     left: 24,
     zIndex: 10,
   },
+
+  deleteButton: {
+  marginTop: 10,
+  backgroundColor: "#fbececff",
+  borderColor: "#cc0000",
+  borderWidth: 2,
+  borderRadius: 10,
+  paddingVertical: 6,
+  paddingHorizontal: 12,
+  alignSelf: "flex-end",
+},
+
+deleteButtonText: {
+  color: "#cc0000",
+  fontWeight: "600",
+},
+
 });
+

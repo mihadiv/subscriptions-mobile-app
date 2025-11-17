@@ -37,4 +37,18 @@ router.get("/list/:user_id", async (req, res) => {
     }
 });
 
+// DELETE subscription
+router.delete("/delete/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        await db.query("DELETE FROM subscriptions WHERE id = ?", [id]);
+        res.json({ message: "Subscription deleted successfully" });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Error deleting subscription" });
+    }
+});
+
 export default router;
