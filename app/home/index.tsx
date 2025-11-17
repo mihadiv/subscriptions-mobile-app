@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/context/AuthContext";
 
 export default function HomeScreen() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -18,7 +18,9 @@ export default function HomeScreen() {
       </Pressable>
 
       <View style={styles.welcomeContainer}>
-        <Text style={styles.welcomeLine1}>Welcome, user! 👋</Text>
+        <Text style={styles.welcomeLine1}>
+          Welcome, {user?.name || "user"} ! 👋
+        </Text>
         <Text style={styles.welcomeLine2}>
           Ready to track your subscriptions?
         </Text>

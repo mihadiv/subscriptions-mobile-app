@@ -41,35 +41,35 @@ export default function Subscriptions() {
     }, [])
   );
 
-const handleDelete = (id: number) => {
-  Alert.alert(
-    "Confirm Delete",
-    "Are you sure you want to delete this subscription?",
-    [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: async () => {
-          try {
-            await axios.delete(`${API_URL}/subscriptions/delete/${id}`);
-            fetchSubscriptions(); 
-          } catch (error) {
-            console.log(error);
-          }
+  const handleDelete = (id: number) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are you sure you want to delete this subscription?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
         },
-      },
-    ]
-  );
-};
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await axios.delete(`${API_URL}/subscriptions/delete/${id}`);
+              fetchSubscriptions();
+            } catch (error) {
+              console.log(error);
+            }
+          },
+        },
+      ]
+    );
+  };
 
   const renderItem = ({ item }: { item: Subscription }) => (
     <View style={styles.subscriptionItem}>
       <Text style={styles.name}>- {item.name} -</Text>
-      <Text style={styles.details}>Price: ${item.price}</Text>
+      <Text style={styles.details}>Price: ${item.price}/month</Text>
       <Text style={styles.details}>
         Expires:{" "}
         {new Date(item.expiry_date).toLocaleDateString("en-GB", {
@@ -79,8 +79,9 @@ const handleDelete = (id: number) => {
         })}
       </Text>
       <Pressable
-      onPress={()=> handleDelete(item.id)}
-      style={styles.deleteButton}>
+        onPress={() => handleDelete(item.id)}
+        style={styles.deleteButton}
+      >
         <Text style={styles.deleteButtonText}>Delete</Text>
       </Pressable>
     </View>
@@ -200,20 +201,18 @@ const styles = StyleSheet.create({
   },
 
   deleteButton: {
-  marginTop: 10,
-  backgroundColor: "#fbececff",
-  borderColor: "#cc0000",
-  borderWidth: 2,
-  borderRadius: 10,
-  paddingVertical: 6,
-  paddingHorizontal: 12,
-  alignSelf: "flex-end",
-},
+    marginTop: 10,
+    backgroundColor: "#fbececff",
+    borderColor: "#cc0000",
+    borderWidth: 2,
+    borderRadius: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    alignSelf: "flex-end",
+  },
 
-deleteButtonText: {
-  color: "#cc0000",
-  fontWeight: "600",
-},
-
+  deleteButtonText: {
+    color: "#cc0000",
+    fontWeight: "600",
+  },
 });
-

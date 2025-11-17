@@ -67,7 +67,7 @@ export default function AddSubscription() {
 
     try {
       const start_date_sql = startDate.toISOString().split("T")[0];
-      const [day, month, year]=expiryDate.split("-");
+      const [day, month, year] = expiryDate.split("-");
       const expiry_date_sql = `${year}-${month}-${day}`;
 
       await axios.post(`${API_URL}/subscriptions/add`, {
@@ -81,8 +81,7 @@ export default function AddSubscription() {
 
       Alert.alert("Subscription added!");
       router.back();
-    }
-    catch(error: any){
+    } catch (error: any) {
       Alert.alert(error.response?.data?.message || "Error saving subscription");
     }
   };
@@ -122,7 +121,7 @@ export default function AddSubscription() {
 
           <TextInput
             style={styles.input}
-            placeholder="Price (e.g. 9.99)"
+            placeholder="Price per month (e.g. 9.99)"
             placeholderTextColor="#4d5cab"
             value={price}
             onChangeText={setPrice}
