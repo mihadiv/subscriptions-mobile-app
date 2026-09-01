@@ -1,6 +1,8 @@
-# 📱 Subscriptions Mobile App  
-A React Native (Expo) mobile app for tracking & managing personal subscriptions.  
-Includes **authentication**, **local or remote backend API**, and **MySQL database** support.
+# 📱 Subscriptions Mobile App
+
+A full-stack mobile application for managing personal subscriptions, built with React Native, Expo, Node.js, Express, and MySQL.
+
+The application allows users to create an account, authenticate securely, add and track subscriptions, and automatically calculate subscription expiry dates.
 
 ---
 
