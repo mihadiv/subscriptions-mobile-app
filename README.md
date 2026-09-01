@@ -373,3 +373,7 @@ GET http://localhost:3000/subscriptions/list/1
 </details>
 
 ---
+
+## 👩‍💻 Author
+
+**Mihaela-Irina Divoiu**
